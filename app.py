@@ -22,6 +22,11 @@ def load_and_train():
     st.write(f"Step 2: Loaded {len(df):,} rows. Preprocessing...")
 
     # Use 30% sample to stay within Streamlit Cloud memory limits
+   
+    # Keep only US/English products
+    df = df[df["product_locale"] == "us"].reset_index(drop=True)
+
+# Sample 30% to stay within memory limits
     df = df.sample(frac=0.3, random_state=42).reset_index(drop=True)
 
     # Map ESCI labels to numeric
